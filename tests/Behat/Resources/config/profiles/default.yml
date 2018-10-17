@@ -1,0 +1,40 @@
+default:
+    formatters:
+        pretty:
+            verbose: true
+            paths: false
+            snippets: false
+
+    extensions:
+        Behat\MinkExtension:
+            base_url: 'http://127.0.0.1:8000'
+            default_session: goutte
+            sessions:
+                goutte:
+                    goutte: ~
+                symfony:
+                    symfony: ~
+
+            show_auto: false
+
+        FriendsOfBehat\ContextServiceExtension:
+            imports:
+            - "tests/Behat/Resources/config/services.xml"
+
+        FriendsOfBehat\CrossContainerExtension: ~
+
+        FriendsOfBehat\SymfonyExtension:
+            env_file: .env.test.dist
+            kernel:
+                class: 'App\Kernel'
+                path: src/Kernel.php
+                debug: true
+                bootstrap: vendor/autoload.php
+
+        FriendsOfBehat\VariadicExtension: ~
+
+        SensioLabs\Behat\PageObjectExtension: ~
+
+    gherkin:
+        filters:
+            tags: "~@todo && ~@cli" # CLI is excluded as it registers an error handler that mutes fatal errors

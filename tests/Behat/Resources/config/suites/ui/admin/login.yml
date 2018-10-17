@@ -1,0 +1,8 @@
+default:
+    suites:
+        ui_administrator_login:
+            contexts_services:
+            - tests.behat.context.ui.admin.login
+
+            filters:
+                tags: "@administrator_login && @ui"
